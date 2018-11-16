@@ -53,7 +53,7 @@
                     <img class="iphone" src="images/iphone.png" alt="iphone">
                 </div>
                 <div class="iphoneContentItem">
-                    <h2>Мы используем инструменты <span class="markerIphone">Instagram</span> которые позволяют<br> настроить показ рекламы<br> только <span class="markerIphone">потенциальным<br>  клиентам</span></h2>
+                    <?php echo $instagramContent->value ?>
                 </div>
             </div>
         </div>
