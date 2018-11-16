@@ -3121,3 +3121,13 @@ table {
     text-shadow: none;
     color: #888888;
 }
+
+.admin-page-title h2{
+    color: #666;
+    margin: 0;
+}
+
+.portlet{
+    /*display: inline-block;*/
+    margin-bottom: 30px;
+}

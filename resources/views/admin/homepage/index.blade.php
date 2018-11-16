@@ -2,13 +2,28 @@
 
 @section('content')
 
-    <div class="portlet box green">
+    <div class="portlet box clearfix">
         <div class="portlet-title">
-            <div class="caption">{{ trans('quickadmin::templates.templates-customView_index-list') }}</div>
+            <div class="caption admin-page-title">
+                <h2>Launch content</h2>
+            </div>
         </div>
         <div class="portlet-body">
-            {{--{{ trans('quickadmin::templates.templates-customView_index-welcome_custom_view') }}--}}
+            {!! Form::open(array('route' => 'update.launch', 'id' => 'update-launch',)) !!}
+            <div class="form-group">
+                {!! Form::label('launch-content', 'Launch Content', array('class'=>'col-md-3 col-sm-2 control-label')) !!}
+                <div class="col-md-10 col-sm-10 col-sm-offset-1">
+                    {!! Form::textarea('launch-content', $launchContent->value, array('class'=>'form-control')) !!}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-8 col-sm-offset-1">
+                    {!! Form::submit( 'update' , array('class' => 'btn btn-primary')) !!}
+                </div>
+            </div>
+            {!! Form::close() !!}
         </div>
-	</div>
+    </div>
 
 @endsection
