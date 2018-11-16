@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>project</title>
-    @include('frontend.css');
+    @include('frontend.css')
 </head>
 <body>
 <div class="main mainLarge">
@@ -31,7 +31,7 @@
     <div class="title-block">
         <div class="container">
             <div class="title-text mainText">
-                <h2>Запусти рекламу которую увидят тысячи пользователей Instagram<span class="blue">.</span></h2>
+                <h2>{{$launchContent->value}}<span class="blue">.</span></h2>
                 <a href="#priceBlock" name="scrollAnimate" class="rocketStartButton">запустить</a>
             </div>
             <div class="rocket">
@@ -266,6 +266,6 @@
 </div>
 
 <a href="#" id="back-top"></a>
-@include('frontend.js');
+@include('frontend.js')
 </body>
 </html>
