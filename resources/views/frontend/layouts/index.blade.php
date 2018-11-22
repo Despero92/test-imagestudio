@@ -63,61 +63,22 @@
         <div class="container">
             <h2>Этапы запуска рекламы в Instagram<span class="pointMarker">.</span></h2>
             <div class="startFlex">
+                @foreach($stages as $stage)
                 <div class="startItem">
                     <div class="startItemBlock1">
-                        <div class="startItemImg client"></div>
+                        <div class="startItemImg">
+                            <?php $imagePath = str_replace('public/', '', $stage->storage_path); ?>
+                            <img src="{{ asset("storage/$imagePath") }}" alt="image-description">
+                        </div>
                     </div>
                     <div class="startItemBlock2">
-                        <span>Этап 1</span>
+                        <span>{{ $stage->title }}</span>
                     </div>
                     <div class="startItemBlock3">
-                        <span>Определяем параметры потенциального клиента</span>
+                        <span>{{ $stage->value }}</span>
                     </div>
                 </div>
-                <div class="startItem">
-                    <div class="startItemBlock1">
-                        <div class="startItemImg arrow"></div>
-                    </div>
-                    <div class="startItemBlock2">
-                        <span>Этап 2</span>
-                    </div>
-                    <div class="startItemBlock3">
-                        <span>Настраиваем цели рекламы</span>
-                    </div>
-                </div>
-                <div class="startItem">
-                    <div class="startItemBlock1">
-                        <div class="startItemImg rocket"></div>
-                    </div>
-                    <div class="startItemBlock2">
-                        <span>Этап 3</span>
-                    </div>
-                    <div class="startItemBlock3">
-                        <span>Запускаем проект</span>
-                    </div>
-                </div>
-                <div class="startItem">
-                    <div class="startItemBlock1">
-                        <div class="startItemImg result"></div>
-                    </div>
-                    <div class="startItemBlock2">
-                        <span>Этап 4</span>
-                    </div>
-                    <div class="startItemBlock3">
-                        <span>Получаем результат</span>
-                    </div>
-                </div>
-                <div class="startItem">
-                    <div class="startItemBlock1">
-                        <div class="startItemImg desktop"></div>
-                    </div>
-                    <div class="startItemBlock2">
-                        <span>Этап 5</span>
-                    </div>
-                    <div class="startItemBlock3">
-                        <span>Готовим отчет</span>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
