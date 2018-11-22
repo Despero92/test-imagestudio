@@ -22,8 +22,8 @@
     {!! Form::label('telephone', 'Telephone', array('class'=>'col-sm-2 control-label')) !!}
     <div class="col-sm-10">
         {!! Form::text('telephone', old('telephone'), array('class'=>'form-control')) !!}
-        
     </div>
+</div>
 
 <div class="form-group">
     <div class="col-sm-10 col-sm-offset-2">
