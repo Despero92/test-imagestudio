@@ -15,11 +15,14 @@ class IndexController extends Controller
         $stages = DB::table('content')
             ->leftJoin('storage', 'content.file_id', '=', 'storage.file_id')
             ->where('section', 'stages')->orderBy('order', 'asc')->get();
+        $startupList = Content::where('section', 'startup')->orderBy('order', 'ASC')->get();
+        //echo "<pre>"; print_r($startupList); echo "</pre>"; die;
 
         $data = array(
             'launchContent' => $launchContent,
             'instagramContent' => $instagramContent,
-            'stages' => $stages
+            'stages' => $stages,
+            'startupList' => $startupList
         );
 
         return view('frontend.layouts.index', $data);
