@@ -90,10 +90,9 @@
                 <div class="startButtonItem1">
                     <h2>Запустить рекламу легко<span>.</span></h2>
                     <ul class="startList">
-                        <li><span></span>Укажите параметры целевой аудитории, страна, город,<br> <span class="none"></span>возраст, пол и приблизительные интересы</li>
-                        <li><span></span>Проведите оплату любым удобным способом</li>
-                        <li><span></span>Получите первые показы уже через несколько минут</li>
-                        <li><span></span>Просматривайте статистику и скачайте подробный отчет о кампании</li>
+                        @foreach($startupList as $row)
+                            <li><span></span>{{ $row->value }}</li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="startButtonItem2">
