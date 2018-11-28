@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="portlet-body">
-            {!! Form::open(array('route' => 'update.inst', 'id' => 'update-inst','class' => 'ckeditor',)) !!}
+            {!! Form::open(array('route' => 'update.inst', 'id' => 'update-inst')) !!}
             <div class="form-group">
                 {!! Form::label('instagram-content', 'Instagram Content', array('class'=>'col-md-3 col-sm-2 control-label')) !!}
                 <div class="col-md-10 col-sm-10 col-sm-offset-1">
@@ -66,7 +66,7 @@
             <div class="caption">{{ trans('quickadmin::templates.templates-view_index-list') }}</div>
         </div>
         <div class="portlet-body">
-            <table class="table table-striped table-hover table-responsive datatable" id="datatable">
+            <table class="table table-striped table-hover table-responsive datatable_stages" id="datatable_stages">
                 <thead>
                     <tr>
                         <th>
@@ -127,7 +127,7 @@
             <div class="caption">{{ trans('quickadmin::templates.templates-view_index-list') }}</div>
         </div>
         <div class="portlet-body">
-            <table class="table table-striped table-hover table-responsive datatable" id="datatable">
+            <table class="table table-striped table-hover table-responsive datatable_startup" id="datatable_startup">
                 <thead>
                 <tr>
                     <th>
@@ -135,6 +135,8 @@
                     </th>
                     <th>order</th>
                     <th>description</th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 </thead>
 
@@ -146,6 +148,7 @@
                         </td>
                         <td>{{ $row->order }}</td>
                         <td>{{ $row->value }}</td>
+                        <td></td>
                         <td>
                             {!! link_to_route(config('quickadmin.route').'.startup.edit', trans('quickadmin::templates.templates-view_index-edit'), array($row->id), array('class' => 'btn btn-xs btn-info')) !!}
                             {!! Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'onsubmit' => "return confirm('".trans("quickadmin::templates.templates-view_index-are_you_sure")."');",  'route' => array(config('quickadmin.route').'.startup.destroy', $row->id))) !!}

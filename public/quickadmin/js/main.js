@@ -7,7 +7,25 @@ $(document).ready(function () {
         activeSub.parent().parent().addClass('open');
     }
 
-    $('.datatable').dataTable({
+    // $('.datatable').dataTable({
+    //     retrieve: true,
+    //     "iDisplayLength": 100,
+    //     "aaSorting": [],
+    //     "aoColumnDefs": [
+    //         {'bSortable': false, 'aTargets': [0]}
+    //     ]
+    // });
+
+    $('.datatable_stages').dataTable({
+        retrieve: true,
+        "iDisplayLength": 100,
+        "aaSorting": [],
+        "aoColumnDefs": [
+            {'bSortable': false, 'aTargets': [0]}
+        ]
+    });
+
+    $('.datatable_startup').dataTable({
         retrieve: true,
         "iDisplayLength": 100,
         "aaSorting": [],
@@ -17,8 +35,8 @@ $(document).ready(function () {
     });
 
     $('.ckeditor').each(function () {
-        CKEDITOR.replace($(this));
-    })
+        CKEDITOR.replace(this);
+    });
 
     $('.mass').click(function () {
         if ($(this).is(":checked")) {

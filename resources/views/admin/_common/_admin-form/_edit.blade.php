@@ -76,3 +76,36 @@
 
     {!! Form::close() !!}
 @endif
+
+@if(Route::currentRouteName() == 'admin.package.edit')
+
+    {!! Form::model($row, array('class' => 'form-horizontal', 'id' => 'form-with-validation', 'method' => 'POST', 'route' => array(config('quickadmin.route').'.package.update', $row->id))) !!}
+    {{ method_field('PUT') }}
+    <div class="form-group">
+        {!! Form::label('title', 'Title', array('class'=>'col-sm-2 control-label')) !!}
+        <div class="col-sm-10">
+            {!! Form::text('title', old('Title'), array('class'=>'form-control')) !!}
+        </div>
+    </div>
+    <div class="form-group">
+        {!! Form::label('price', 'Price', array('class'=>'col-sm-2 control-label')) !!}
+        <div class="col-sm-10">
+            {!! Form::text('price', old('Price'), array('class'=>'form-control')) !!}
+        </div>
+    </div>
+    <div class="form-group">
+        {!! Form::label('order', 'Order', array('class'=>'col-sm-2 control-label')) !!}
+        <div class="col-sm-10">
+            {!! Form::selectRangeWithDefault('order', 1, 20) !!}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-2">
+            {!! Form::submit(trans('quickadmin::templates.templates-view_edit-update'), array('class' => 'btn btn-primary')) !!}
+            {!! link_to_route(config('quickadmin.route').'.packages.index', trans('quickadmin::templates.templates-view_edit-cancel'), null, array('class' => 'btn btn-default')) !!}
+        </div>
+    </div>
+
+    {!! Form::close() !!}
+@endif

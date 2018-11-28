@@ -97,6 +97,48 @@ Form::macro('selectRangeWithDefault', function($name, $start, $end, $selected = 
             $items[$i . ""] = $i;
         }
     }
+
+    if(Route::currentRouteName() == 'admin.package.create'){
+
+        $results = DB::table('packages')->select('order')->get();
+
+        if(!$results->count()){
+            for ($i=$startValue; $i<$endValue; $i+=$interval) {
+                $items[$i . ""] = $i;
+            }
+            $items[$endValue] = $endValue;
+            return Form::select($name, $items);
+        }
+
+        $orderArray = array();
+        foreach ($results as $result){
+            $orderArray[] = $result->order;
+        }
+
+        for ($i=$startValue; $i<$endValue; $i+=$interval) {
+            if(in_array($i, $orderArray)) continue;
+            $items[$i . ""] = $i;
+        }
+    }
+
+    if(Route::currentRouteName() == 'admin.package.edit'){
+        $request = Request();
+        $results = DB::table('packages')->select('order')->where(
+            [
+                ['id', '!=', $request->id]
+            ])
+            ->get();
+
+        $orderArray = array();
+        foreach ($results as $result){
+            $orderArray[] = $result->order;
+        }
+
+        for ($i=$startValue; $i<$endValue; $i+=$interval) {
+            if(in_array($i, $orderArray)) continue;
+            $items[$i . ""] = $i;
+        }
+    }
     $items[$endValue] = $endValue;
     return Form::select($name, $items);
 });

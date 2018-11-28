@@ -17,7 +17,7 @@ class HomePageController extends Controller {
             ->leftJoin('storage', 'content.file_id', '=', 'storage.file_id')
             ->where('section', 'stages')->get();
         $startupList = Content::where('section', 'startup')->orderBy('order', 'ASC')->get();
-        echo "<pre>"; print_r($startupList); echo "</pre>"; die;
+
         $data = array(
             'launchContent' => $launchContent,
             'instagramContent' => $instagramContent,

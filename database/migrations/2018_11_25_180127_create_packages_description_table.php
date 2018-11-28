@@ -16,6 +16,7 @@ class CreatePackagesDescriptionTable extends Migration
         Schema::create('packages_description', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('package_id')->unsigned();
+            $table->integer('order');
             $table->text('description');
             $table->foreign('package_id')->references('id')->on('packages');
         });
