@@ -2448,7 +2448,8 @@ header .container {
   opacity: 1;
 }
 
-.popupForm input[type="text"] {
+.popupForm input[type="text"],
+.popupForm input[type="tel"]{
   width: 100%;
   padding: 10px 20px;
   -webkit-border-radius: 50px;

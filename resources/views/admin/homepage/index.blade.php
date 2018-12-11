@@ -66,7 +66,7 @@
             <div class="caption">{{ trans('quickadmin::templates.templates-view_index-list') }}</div>
         </div>
         <div class="portlet-body">
-            <table class="table table-striped table-hover table-responsive datatable_stages" id="datatable_stages">
+            <table class="table table-striped table-hover table-responsive datatable" id="datatable">
                 <thead>
                     <tr>
                         <th>
@@ -127,7 +127,7 @@
             <div class="caption">{{ trans('quickadmin::templates.templates-view_index-list') }}</div>
         </div>
         <div class="portlet-body">
-            <table class="table table-striped table-hover table-responsive datatable_startup" id="datatable_startup">
+            <table class="table table-striped table-hover table-responsive datatable" id="datatable">
                 <thead>
                 <tr>
                     <th>

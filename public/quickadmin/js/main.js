@@ -7,27 +7,9 @@ $(document).ready(function () {
         activeSub.parent().parent().addClass('open');
     }
 
-    // $('.datatable').dataTable({
-    //     retrieve: true,
-    //     "iDisplayLength": 100,
-    //     "aaSorting": [],
-    //     "aoColumnDefs": [
-    //         {'bSortable': false, 'aTargets': [0]}
-    //     ]
-    // });
-
-    $('.datatable_stages').dataTable({
+    $('.datatable').dataTable({
         retrieve: true,
-        "iDisplayLength": 100,
-        "aaSorting": [],
-        "aoColumnDefs": [
-            {'bSortable': false, 'aTargets': [0]}
-        ]
-    });
-
-    $('.datatable_startup').dataTable({
-        retrieve: true,
-        "iDisplayLength": 100,
+        "iDisplayLength": 10,
         "aaSorting": [],
         "aoColumnDefs": [
             {'bSortable': false, 'aTargets': [0]}

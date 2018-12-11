@@ -27,7 +27,24 @@
             </nav>
         </div>
     </header>
-
+    @if(session('message'))
+        <div id="modal-success-message" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Успех!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>{!! session('message') !!}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
     <div class="title-block">
         <div class="container">
             <div class="title-text mainText">
@@ -112,75 +129,36 @@
         <div class="container">
             <h2>Цена</h2>
             <div class="priceBlockFlex">
+                @foreach($packages as $package)
+                    @if(!empty((array)$package->description))
                 <div class="priceBlockItem">
                     <div class="priceItemHeader blueColor">
-                        <h3>Старт</h3>
-                        <img src="images/rocketShadow.png" alt="icon">
+                        <h3>{{ $package->title }}</h3>
+                        {{--<img src="images/rocketShadow.png" alt="icon">--}}
                     </div>
                     <div class="priceItemContent">
                         <ul class="priceItemList">
-                            <li><span></span>Запуск 1 рекламного<br><span class="none"></span> объявления</li>
-                            <li><span></span>1 вариант рекламного<br><span class="none"></span> объявления</li>
-                            <li><span></span>до 2 недель рекламы</li>
-                            <li><span></span>1 оптимизация</li>
-                            <li><span></span>Отчет</li>
+                            @foreach($package->description as $item)
+                                @if(!empty($item))
+                                    <li><span></span>{{ $item }}</li>
+                                @endif
+                            @endforeach
                         </ul>
                         <img src="images/decoration.png" alt="decoration">
                         <div class="countMatchWrapper">
-                            <div class="count">500</div>
+                            <div class="count">
+                                @if(count($package->addition))
+                                    {{ $package->addition }}
+                                @endif
+                                {{ $package->price }}
+                            </div>
                             <div class="match">гривен<br> в месяц</div>
                         </div>
                     </div>
                     <button class="buyThis">заказать</button>
                 </div>
-                <div class="priceBlockItem">
-                    <div class="priceItemHeader greenColor">
-                        <h3>Бизнес</h3>
-                        <img src="images/moneyShadow.png" alt="icon">
-                    </div>
-                    <div class="priceItemContent">
-                        <ul class="priceItemList">
-                            <li><span></span>Запуск до 5 рекламных<br><span class="none"></span> объявлений</li>
-                            <li><span></span>Подготовка макета<br><span class="none"></span> для рекламы</li>
-                            <li><span></span>Разработка текста<br><span class="none"></span> для рекламы</li>
-                            <li><span></span>3 варианта каждой рекламы</li>
-                            <li><span></span>Сплит тестирование</li>
-                            <li><span></span>Двухэтапная оптимизация</li>
-                            <li><span></span>Месяц рекламы</li>
-                            <li><span></span>Отчет</li>
-                        </ul>
-                        <img src="images/decoration.png" alt="decoration">
-                        <div class="countMatchWrapper">
-                            <div class="count">1500</div>
-                            <div class="match">гривен<br> в месяц</div>
-                        </div>
-                    </div>
-                    <button class="buyThis">заказать</button>
-                </div>
-                <div class="priceBlockItem">
-                    <div class="priceItemHeader redColor">
-                        <h3>Индивидуальный</h3>
-                        <img src="images/IndividualShadow.png" alt="icon">
-                    </div>
-                    <div class="priceItemContent">
-                        <ul class="priceItemList">
-                            <li><span></span>Включает пакет бизнес</li>
-                            <li><span></span>Определение потенциального<br><span class="none"></span> клиента</li>
-                            <li><span></span>Разработка стратегии</li>
-                            <li><span></span>Маркетинговый<br><span class="none"></span> анализ рекламы</li>
-                            <li><span></span>Подготовка аккаунта<br><span class="none"></span> к рекламе</li>
-                            <li><span></span>Оптимизация аккаунта<br><span class="none"></span> и повышение конверсии</li>
-                            <li><span></span>Построение индивидуальной<br><span class="none"></span> рекламной компании</li>
-                            <li><span></span>Запуск и проведение<br><span class="none"></span> рекламной компании</li>
-                        </ul>
-                        <img src="images/decoration.png" alt="decoration">
-                        <div class="countMatchWrapper">
-                            <div class="count">от 5000</div>
-                            <div class="match">гривен<br> в месяц</div>
-                        </div>
-                    </div>
-                    <button class="buyThis">заказать</button>
-                </div>
+                    @endif
+                @endforeach
             </div>
         </div>
     </div>
@@ -212,12 +190,19 @@
 <div class="popupForm">
     <button class="popupFormClose"></button>
     <h3 class="titlePop">ТАРИФНЫЙ ПАКЕТ "СТАНДАРТ"</h3>
-    <form>
-        <input type="hidden" class="hidden-title">
-        <input type="text" placeholder="Ваше имя">
-        <input type="text" placeholder="Ваш телефон">
-        <input type="submit" value="заказать" >
-    </form>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                {!! implode('', $errors->all('<li class="error">:message</li>')) !!}
+            </ul>
+        </div>
+    @endif
+    {!! Form::open(array('route' => 'buy_package', 'method' => 'POST')) !!}
+        {!! Form::hidden('package_title', '', array('class' => 'hidden-title')) !!}
+        {!! Form::text('client_name', '', array('placeholder' => 'Ваше имя', 'id' => 'client_name')) !!}
+        {!! Form::tel('client_phone', '', array('placeholder' => 'Ваш телефон', 'id' => 'client_phone')) !!}
+        {!! Form::submit('заказать') !!}
+    {!! Form::close() !!}
 </div>
 
 <div class="thanksPopup">
@@ -227,5 +212,12 @@
 
 <a href="#" id="back-top"></a>
 @include('frontend.js')
+<script type="text/javascript">
+    $(document).ready(function () {
+        if( $('#modal-success-message').is(':hidden') ){
+            $('#modal-success-message').modal('show')
+        }
+    })
+</script>
 </body>
 </html>

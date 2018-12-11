@@ -139,6 +139,25 @@ Form::macro('selectRangeWithDefault', function($name, $start, $end, $selected = 
             $items[$i . ""] = $i;
         }
     }
+
+    if(Route::currentRouteName() == 'admin.package.description.create'
+        or Route::currentRouteName() == 'admin.package.description.edit'){
+
+        $results = DB::table('packages_description')->select('order')->get();
+
+        if(!$results->count()){
+            for ($i=$startValue; $i<$endValue; $i+=$interval) {
+                $items[$i . ""] = $i;
+            }
+            $items[$endValue] = $endValue;
+            return Form::select($name, $items);
+        }
+
+        for ($i=$startValue; $i<$endValue; $i+=$interval) {
+            $items[$i . ""] = $i;
+        }
+    }
+
     $items[$endValue] = $endValue;
     return Form::select($name, $items);
 });

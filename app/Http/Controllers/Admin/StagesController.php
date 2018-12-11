@@ -11,8 +11,14 @@ use Illuminate\Support\Facades\DB;
 
 class StagesController extends Controller
 {
+    protected $storages;
+
+    public function __construct(Storages $storages)
+    {
+        $this->storages = $storages;
+    }
+
     public function create(Request $request){
-        $storages = new Storages;
 
         if ($request->isMethod('post'))
         {
@@ -24,7 +30,7 @@ class StagesController extends Controller
             ]);
 
             if($request->hasFile('image')) {
-                $uploadFileId = $storages->uploadFile($request->file('image'), 'stages/images');
+                $uploadFileId = $this->storages->uploadFile($request->file('image'), 'stages/images');
             }
 
             Content::insert([
@@ -47,7 +53,6 @@ class StagesController extends Controller
     }
 
     public function update($id, Request $request){
-        $storages = new Storages;
         $requestArray = $request->all();
 
         if(Content::findOrFail($id)){
@@ -58,7 +63,7 @@ class StagesController extends Controller
             $file_id = $row->first()->file_id;
 
             if($request->hasFile('image') and !empty($file_id)) {
-                $storages->updateFile($file_id, $request->file('image'), 'stages/images');
+                $this->storages->updateFile($file_id, $request->file('image'), 'stages/images');
             }
             unset($requestArray['image']);
 
@@ -70,12 +75,11 @@ class StagesController extends Controller
 
     public function destroy($id)
     {
-        $storages = new Storages;
         $row = Content::findOrFail($id);
 
         try{
             Content::destroy($id);
-            $storages->deleteFile($row->file_id);
+            $this->storages->deleteFile($row->file_id);
         }catch(\Exception $e){
             echo 'Message: ' .$e->getMessage();
         }

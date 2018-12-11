@@ -96,6 +96,49 @@
         </div>
     </div>
     <div class="form-group">
+        {!! Form::label('addition', 'Addition', array('class'=>'col-sm-2 control-label')) !!}
+        <div class="col-sm-10">
+            {!! Form::text('addition', old('Addition'), array('class'=>'form-control')) !!}
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-2">
+            {!! Form::submit( trans('quickadmin::templates.templates-view_create-create') , array('class' => 'btn btn-primary')) !!}
+        </div>
+    </div>
+
+    {!! Form::close() !!}
+@endif
+
+@if(Route::currentRouteName() == 'admin.package.description.create')
+
+    {!! Form::open(array('route' => config('quickadmin.route').'.package.description.create', 'method' => 'POST', 'id' => 'form-with-validation', 'class' => 'form-horizontal')) !!}
+
+    <div class="form-group">
+        <div class="caption admin-page-title package-title">
+            <h4>Packages</h4>
+        </div>
+        @foreach($packages as $package)
+        {!! Form::label('package-'.$package->id, $package->title, array('class'=>'col-sm-2 control-label')) !!}
+        <div class="col-sm-1">
+            {!! Form::checkbox('package-'.$package->id, $package->id) !!}
+        </div>
+        {{--<div class="clearfix"></div>--}}
+            @endforeach
+    </div>
+    <div class="form-group">
+        {!! Form::label('description', 'Description', array('class'=>'col-sm-2 control-label')) !!}
+        <div class="col-sm-10">
+            {!! Form::textarea('description', old('Description'), array('class'=>'form-control')) !!}
+        </div>
+    </div>
+    <div class="form-group">
+        {!! Form::label('order', 'Order', array('class'=>'col-sm-2 control-label')) !!}
+        <div class="col-sm-10">
+            {!! Form::selectRangeWithDefault('order', 1, 40) !!}
+        </div>
+    </div>
+    <div class="form-group">
         <div class="col-sm-10 col-sm-offset-2">
             {!! Form::submit( trans('quickadmin::templates.templates-view_create-create') , array('class' => 'btn btn-primary')) !!}
         </div>

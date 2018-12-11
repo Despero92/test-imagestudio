@@ -3131,3 +3131,8 @@ table {
     /*display: inline-block;*/
     margin-bottom: 30px;
 }
+
+.package-title{
+    margin-left: 130px;
+    margin-bottom: 20px;
+}

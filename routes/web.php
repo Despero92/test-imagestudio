@@ -38,3 +38,13 @@ Route::group(['prefix' => 'admin/packages'], function (){
     Route::put('{id}/update', ['uses' => 'Admin\PackagesController@updatePackage', 'as' => 'admin.package.update']);
     Route::delete('{id}/destroy', ['uses' => 'Admin\PackagesController@destroyPackage', 'as' => 'admin.package.destroy']);
 });
+
+Route::group(['prefix' => 'admin/packages/description'], function (){
+    Route::get('', ['uses' => 'Admin\PackagesController@index', 'as' => 'admin.packages.index']);
+    Route::match(['get', 'post'], 'description_create', ['uses' => 'Admin\PackagesController@createDescription', 'as' => 'admin.package.description.create']);
+    Route::get('{id}/edit', ['uses' => 'Admin\PackagesController@editDescription', 'as' => 'admin.package.description.edit']);
+    Route::put('{id}/update', ['uses' => 'Admin\PackagesController@updateDescription', 'as' => 'admin.package.description.update']);
+    Route::delete('{id}/destroy', ['uses' => 'Admin\PackagesController@destroyDescription', 'as' => 'admin.package.description.destroy']);
+});
+
+Route::post('/buy_package', ['uses' => 'FrontEnd\IndexController@buyPackageAction', 'as' => 'buy_package']);
